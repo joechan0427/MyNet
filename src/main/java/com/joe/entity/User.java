@@ -17,6 +17,8 @@ import java.util.HashMap;
 public class User {
     private String userId;
 
+    @NotNull
+    @Pattern(regexp = "^[a-zA-Z0-9_-]{4,16}$")
     private String userNickname;
 
     @NotNull(message = "password cant be null")

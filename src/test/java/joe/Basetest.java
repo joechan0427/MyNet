@@ -10,6 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 
 @RunWith(value = SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:ApplicationContext.xml"})
+@ContextConfiguration({"classpath:Application-mail.xml", "classpath:Application-Context.xml"})
 public class Basetest {
 }

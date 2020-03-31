@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 使用qq邮箱 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <!--         <property name="host" value="smtp.qq.com"/> -->
+        <property name="host" value="smtp.qq.com"/>
+        <property name="port" value="587"/>
+        <!--         <property name="username" value="xxxxx@qq.com"/> -->
+        <property name="username" value="931753618@qq.com"/>
+        <!-- qq邮箱的授权码，如果是企业邮箱，则使用登录密码 -->
+        <!--         <property name="password" value="joe3914898"/> -->
+        <property name="password" value="ujolerglglzvbbag"/>
+        <property name="javaMailProperties">
+            <props >
+                <prop key="mail.smtp.auth">true</prop>
+                <!-- SMTP加密方式:连接到一个TLS保护连接 -->
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <!-- 设置邮件发送超时时间 -->
+                <prop key="mail.smtp.timeout">25000</prop>
+            </props>
+        </property>
+    </bean>
+<!--    来源以及标题-->
+    <bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
+        <property name="from" value="931753618@qq.com" />
+        <!--         <property name="from" value="xxxxx@qq.com" /> -->
+        <property name="subject" value="Welcome!" />
+    </bean>
+
+    <bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="classpath:freemarker" />
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="locale">zh_CN</prop>
+                <prop key="default_encoding">UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

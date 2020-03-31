@@ -29,13 +29,23 @@ $("#registerBtn").click(function check(){
 
     var $email = $("#userEmail").val();
     var $password = $("#userPassword").val();
+    var $userName = $("#userNickname").val();
 
     var regEmail = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
     var regPassword = /^[A-Za-z0-9]{6,12}$/;
-    // if (!regEmail.test($email) || !regPassword.test($password)) {
-    //     swal("哎呦出错了", "邮箱或密码输入有误","error");
+    var regUserName = /^[a-zA-Z0-9_-]{4,16}$/;
+    // if (!regUserName.test($userName)) {
+    //     swal("哎呦出错了", "用户名输入有误","error");
     //     return false;
     // }
+    if (!regEmail.test($email)) {
+        swal("哎呦出错了", "邮箱输入有误","error");
+        return false;
+    }
+    if (!regPassword.test($password)) {
+        swal("哎呦出错了", "密码输入有误","error");
+        return false;
+    }
     // alert($email);
     $.ajax({
         url: "validateEmail",

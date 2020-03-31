@@ -46,6 +46,9 @@
                 <h2 class="form-signin-heading">Sign in</h2>
 <%--                <label for="inputEmail" class="sr-only">Email address</label>--%>
                 <div class="form-group">
+                    <input type="text" id="userNickname" name="userNickname" class="form-control" placeholder="UserName: 4到16位（字母，数字，下划线，减号）" required>
+                </div>
+                <div class="form-group">
                     <input type="email" id="userEmail" name="userEmail" class="form-control" placeholder="Email " required autofocus>
                 </div>
 <%--                <label for="inputPassword" class="sr-only">Password</label>--%>
