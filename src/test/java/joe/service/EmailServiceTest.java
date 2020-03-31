@@ -15,6 +15,6 @@ public class EmailServiceTest extends Basetest {
 
     @Test
     public void sendTest() {
-        emailService.send("931", "hello", "931753618@qq.com");
+//        emailService.send("931", "hello", "931753618@qq.com");
     }
 }

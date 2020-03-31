@@ -10,7 +10,7 @@ function send(){
         data: user,
         success: function (responseText) {
             if (responseText === "success") {
-                swal("哎呦成功了", "邮箱注册","success");
+                swal("哎呦成功了", "请到邮箱完成注册","success");
             }else {
                 swal("哎呦出错了", "请重新注册","error");
             }
@@ -34,10 +34,10 @@ $("#registerBtn").click(function check(){
     var regEmail = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
     var regPassword = /^[A-Za-z0-9]{6,12}$/;
     var regUserName = /^[a-zA-Z0-9_-]{4,16}$/;
-    // if (!regUserName.test($userName)) {
-    //     swal("哎呦出错了", "用户名输入有误","error");
-    //     return false;
-    // }
+    if (!regUserName.test($userName)) {
+        swal("哎呦出错了", "用户名输入有误","error");
+        return false;
+    }
     if (!regEmail.test($email)) {
         swal("哎呦出错了", "邮箱输入有误","error");
         return false;

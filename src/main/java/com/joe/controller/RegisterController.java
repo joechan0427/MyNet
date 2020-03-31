@@ -50,4 +50,11 @@ public class RegisterController {
 //        writer.write("Email");
         return userMapper.selectByEmail(userEmail) == null ? "noEmail" : "hasEmail";
     }
+
+    @RequestMapping("/active")
+    public String active(String userEmail, String activeCode) {
+//        System.out.println(userEmail+activeCode);
+
+        return "redirect:/index.jsp";
+    }
 }

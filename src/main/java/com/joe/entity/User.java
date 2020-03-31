@@ -39,6 +39,20 @@ public class User {
 
     private Date tokenExptime;
 
+    public User() {
+    }
+
+    public User(String userId, @NotNull @Pattern(regexp = "^[a-zA-Z0-9_-]{4,16}$") String userNickname, @NotNull(message = "password cant be null") @Size(min = 6, max = 12, message = "password length is wrong") @Pattern(regexp = "^[A-Za-z0-9]{6,12}$") String userPassword, @NotNull(message = "email cant be null") @Pattern(regexp = "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$") @Email(message = "email error") String userEmail, Integer actiState, String actiCode, String salt, Date tokenExptime) {
+        this.userId = userId;
+        this.userNickname = userNickname;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
+        this.actiState = actiState;
+        this.actiCode = actiCode;
+        this.salt = salt;
+        this.tokenExptime = tokenExptime;
+    }
+
     @Override
     public String toString() {
         return "User{" +
