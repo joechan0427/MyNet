@@ -6,8 +6,11 @@ import com.joe.utils.ReadPropertiesUtil;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.io.Console;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -24,7 +27,7 @@ public class UserService {
     EmailService emailService;
 
     public String SignUp(User user) {
-//        查询是否存在用户
+        // 查询是否存在用户
         if (userMapper.selectByEmail(user.getUserEmail()) != null) {
             return "用户已存在";
         }
@@ -46,7 +49,27 @@ public class UserService {
         return "success";
     }
 
-    public void activeAccount(String userEmail, String activeCode) {
-//        TODO: 激活账户操作
+    public Map<String, String> activeAccount(String userEmail, String activeCode) {
+        User user = userMapper.selectByEmail(userEmail);
+        String state = "error";
+        String message;
+        HashMap<String, String> model = new HashMap<>(2);
+        if (user == null || user.getActiState() == User.ACTIVED) {
+            message = "未注册或已激活账户!";
+        }
+        else if (activeCode == null || !activeCode.equals(user.getActiCode())) {
+            message = "参数错误，激活失败!";
+        } else if (System.currentTimeMillis() - user.getTokenExptime().getTime() > 1000*60*60){
+            message = "已超过60分钟，请重新注册";
+            userMapper.deleteByPrimaryKey(user.getUserId());
+        } else {
+            state = "success";
+            message = "激活成功！";
+            user.setActiState(User.ACTIVED);
+            userMapper.updateByPrimaryKey(user);
+        }
+        model.put("state", state);
+        model.put("message", message);
+        return model;
     }
 }

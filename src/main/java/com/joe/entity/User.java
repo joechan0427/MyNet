@@ -39,6 +39,9 @@ public class User {
 
     private Date tokenExptime;
 
+    public static final int ACTIVED = 1;
+    public static final int NOT_ACTIVED = 0;
+
     public User() {
     }
 
