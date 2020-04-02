@@ -43,8 +43,8 @@ public class RegisterController {
         if (!allErrors.isEmpty()) {
             return "error";
         }
-        return userService.SignUp(user);
 
+        return userService.SignUp(user);
     }
 
     @RequestMapping("/validateEmail")

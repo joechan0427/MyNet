@@ -18,19 +18,20 @@ function send(){
         error: function (responseText) {
             swal("哎呦出错了", "请重新注册","error");
         }
-    })
+    });
+    
 }
 
 
 
 $("#registerBtn").click(function check(){
 
-    // alert("ok")
-
-    var $email = $("#userEmail").val();
-    var $password = $("#userPassword").val();
-    var $userName = $("#userNickname").val();
-
+    var $email = $("#Email").val();
+    var $password = $("#Password").val();
+    var $userName = $("#Nickname").val();
+    // alert($email);
+    // alert($password);
+    // alert($userName);
     var regEmail = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
     var regPassword = /^[A-Za-z0-9]{6,12}$/;
     var regUserName = /^[a-zA-Z0-9_-]{4,16}$/;
@@ -57,25 +58,18 @@ $("#registerBtn").click(function check(){
             "userEmail": $email
         },
         success: function (responseText) {
-            // alert(responseText+"success");
-            // return false;
             if (responseText === "noEmail") {
-                // alert("");
                 send();
-                return false;
-                // validator.defaultSubmit();
             } else {
                 swal("哎呦出错了", "您的邮箱已注册过了","error");
 
-                // alert("");
-                return true;
             }
         },
         error: function (responseText) {
             // alert(responseText);
             sweetAlert("哎呦出错了", "系统出错!","error");
-            return false;
+
         }
     });
-    // return false;
+    return false;
 });
