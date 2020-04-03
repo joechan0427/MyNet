@@ -14,6 +14,21 @@
     <link rel="stylesheet" href="${APP_PATH}/css/navbar.css">
 
     <link href="${APP_PATH}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+        #vcode-img{
+            margin-top: -6px;
+            margin-left: -20px;
+        }
+        @media screen and (max-width: 580px){
+            #vcode-img{
+                margin-top: 17px;
+                margin-left: auto;
+            }
+        }
+
+    </style>
 </head>
 <body>
 <div class="modal fade"  id="userLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -43,8 +58,8 @@
                         <div class="col-sm-4">
                             <input id="vcode" class="form-control" type="text" name="vcode" placeholder="Input verification code">
                         </div>
-                        <div class="col-sm-3">
-                            <img src="${basePath}/open/getGifCode.shtml" />
+                        <div class="col-sm-4">
+                            <img id="vcode-img" src="${APP_PATH}/getGifCode"/>
                         </div>
                     </div>
 
@@ -89,9 +104,15 @@
 </div>
 
 </body>
+
 <script src="${APP_PATH}/webjars/jquery/3.4.1/dist/jquery.min.js"></script>
 <script src="${APP_PATH}/js/navbar.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="${APP_PATH}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${APP_PATH}/js/login.js"></script>
+<script>
+    $("#vcode-img").click(function () {
+        $(this).attr("src", "${APP_PATH}/getGifCode?time="+ new Date().getTime());
+    });
+</script>
 </html>
