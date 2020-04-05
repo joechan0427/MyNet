@@ -72,4 +72,11 @@ public class UserService {
         model.put("message", message);
         return model;
     }
+
+    public User validateUserExist(String userEmail) {
+        User user = userMapper.selectByEmail(userEmail);
+        if (user == null || user.getActiState() == User.NOT_ACTIVED)
+            return null;
+        return user;
+    }
 }

@@ -20,7 +20,7 @@
     <link href="${APP_PATH}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <%--    背景--%>
     <link rel="stylesheet" media="screen" href="${APP_PATH}/css/background.css">
-
+<%--sweetalert--%>
     <link rel="stylesheet" type="text/css" href="${APP_PATH}/css/sweetalert.css">
     <script src="${APP_PATH}/js/sweetalert.min.js"></script>
 </head>
