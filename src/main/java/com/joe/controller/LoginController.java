@@ -1,12 +1,17 @@
 package com.joe.controller;
 
+import com.joe.dao.UserMapper;
 import com.joe.entity.User;
+import com.joe.service.EmailService;
+import com.joe.service.UserService;
 import com.joe.utils.vcode.Captcha;
 import com.joe.utils.vcode.GifCaptcha;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +23,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class LoginController {
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    UserMapper userMapper;
+
+    @Autowired
+    EmailService emailService;
 
     @RequestMapping("/login")
     public String login(User user, HttpServletRequest request) {
@@ -55,4 +69,18 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+    @RequestMapping("/toForgetPassword")
+    public String toForgetPassword() {
+        return "forgetPassword";
+    }
+
+    @RequestMapping("/forgetPassword")
+    @ResponseBody
+    public String forgetPassword(User newUser) {
+//        User user = userMapper.selectByEmail(newUser.getUserEmail());
+        return userService.forgetPassword(newUser);
+    }
+
+
 }

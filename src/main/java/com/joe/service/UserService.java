@@ -79,4 +79,13 @@ public class UserService {
             return null;
         return user;
     }
+
+    public String forgetPassword(User newUser) {
+        User user = userMapper.selectByEmail(newUser.getUserEmail());
+//        user.setUserPassword(newUser.getUserPassword());
+//        user.setActiState(User.NOT_ACTIVED);
+        newUser.setUserNickname(user.getUserNickname());
+        userMapper.deleteByPrimaryKey(user.getUserId());
+        return SignUp(newUser);
+    }
 }

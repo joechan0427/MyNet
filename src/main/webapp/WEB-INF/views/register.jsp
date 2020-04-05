@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>登陆</title>
+    <title>注册</title>
     <!--表单的样式-->
     <link href="${APP_PATH}/css/register.css" rel="stylesheet">
 

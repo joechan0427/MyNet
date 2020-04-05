@@ -21,12 +21,21 @@
             margin-top: -6px;
             margin-left: -20px;
         }
+        #forget{
+            margin-top: 5px;
+        }
         @media screen and (max-width: 760px){
             #vcode-img{
                 margin-top: 17px;
                 margin-left: auto;
             }
+            /*#forget{*/
+            /*    margin-top: auto;*/
+            /*    padding-right: 190px;*/
+            /*    padding-left: 0;*/
+            /*}*/
         }
+
 
     </style>
     <%--sweetalert--%>
@@ -76,6 +85,7 @@
                 </form>
             </div>
             <div class="modal-footer">
+                <a href="${APP_PATH}/toForgetPassword" class="text-left col-sm-9" id="forget">忘记密码?</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary" id="btn-login">Login</button>
             </div>
@@ -136,6 +146,32 @@
         }
         var user = $("#userForm").serialize();
         // alert(user)
+        $.ajax({
+            url: "validateEmail",
+            cache: false,
+            type: "post",
+            async: false,
+            dataType: "text",
+            data: {
+                "userEmail": $email
+            },
+            success: function (responseText) {
+                if (responseText === "noEmail") {
+                    send();
+                } else {
+                    swal("哎呦出错了", "您的邮箱已注册过了","error");
+
+                }
+            },
+            error: function (responseText) {
+                // alert(responseText);
+                sweetAlert("哎呦出错了", "系统出错!","error");
+
+            }
+        });
+
+
+
         $.ajax({
             url: "${APP_PATH}/login",
             cache: false,
